@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.udacity.firebase.shoppinglistplusplus.R;
+import com.udacity.firebase.shoppinglistplusplus.model.ShoppingList;
 import com.udacity.firebase.shoppinglistplusplus.utils.Constants;
 
 /**
@@ -93,7 +94,11 @@ public class AddListDialogFragment extends DialogFragment {
     public void addShoppingList() {
         Firebase ref = new Firebase(Constants.FIREBASE_URL);
         String userEnteredName = mEditTextListName.getText().toString();
-        ref.child("listname").setValue("HI this is surya");
+
+        ShoppingList shoppingList = new ShoppingList(userEnteredName,
+                "Anonymous user");
+        ref.child("activeList").setValue(shoppingList);
+        //ref.child("listname").setValue(userEnteredName);
     }
 
 }
